@@ -51,3 +51,33 @@ class Solution {
         return 0;
     }
 }
+
+//删除（就是巧妙优化代码）
+class Solution {
+    public int majorityElement(int[] array) {
+        if (array == null || array.length == 0) {
+            return 0;
+        }
+        
+        int target = array[0];//设定初始目标值
+        int times = 1;//出现次数
+        for (int i = 1; i < array.length; i++) {
+            if (times == 0) {
+                target = array[i];
+                times = 1;
+            }else if (target == array[i]) {
+                times++;
+            }else {
+                times--;
+            }
+        }
+        
+        times = 0;
+        for (int j = 0; j < array.length; j++) {
+            if (target == array[j]) {
+                times++;
+            }
+        }
+        return times > (array.length / 2) ? target : 0;
+    }
+}
